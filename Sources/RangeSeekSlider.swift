@@ -35,18 +35,10 @@ import UIKit
     open weak var delegate: RangeSeekSliderDelegate?
 
     /// The minimum possible value to select in the range
-    @IBInspectable open var minValue: CGFloat = 0.0 {
-        didSet {
-            refresh()
-        }
-    }
+    @IBInspectable open var minValue: CGFloat = 0.0
 
     /// The maximum possible value to select in the range
-    @IBInspectable open var maxValue: CGFloat = 100.0 {
-        didSet {
-            refresh()
-        }
-    }
+    @IBInspectable open var maxValue: CGFloat = 100.0
 
     /// The preselected minumum value
     /// (note: This should be less than the selectedMaxValue)
@@ -55,7 +47,6 @@ import UIKit
             if selectedMinValue < minValue {
                 selectedMinValue = minValue
             }
-            refresh()
         }
     }
 
@@ -66,7 +57,6 @@ import UIKit
             if selectedMaxValue > maxValue {
                 selectedMaxValue = maxValue
             }
-            refresh()
         }
     }
 
@@ -646,7 +636,7 @@ import UIKit
         }
     }
 
-    fileprivate func refresh() {
+    open func refresh() {
         if enableStep && step > 0.0 {
             selectedMinValue = CGFloat(roundf(Float(selectedMinValue / step))) * step
             if let previousStepMinValue = previousStepMinValue, previousStepMinValue != selectedMinValue {
